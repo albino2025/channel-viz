@@ -13,6 +13,7 @@
 	*/
 
 	var defaultKey		= 'Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC', // Unique master Xively API key to be used as a default
+		key		= 'Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC',
 		defaultFeeds	= [172663481!Chauffage_Buanderie], // Comma separated array of Xively Feed ID numbers
 		applicationName	= 'Albino\'s Feed', // Replaces Xively logo in the header
 		dataDuration	= '90days', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
