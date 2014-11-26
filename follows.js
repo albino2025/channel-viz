@@ -14,11 +14,11 @@
 
 	var defaultKey		= 'Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC', // Unique master Xively API key to be used as a default
 		defaultFeeds	= [172663481!Chauffage_Buanderie], // Comma separated array of Xively Feed ID numbers
-		applicationName	= '', // Replaces Xively logo in the header
+		applicationName	= 'Albino\'s Feed', // Replaces Xively logo in the header
 		dataDuration	= '', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
 		dataInterval	= 0, // Default interval for data to be displayed (in seconds)
 		dataColor		= '', // CSS HEX value of color to represent data (omit leading #)
-		hideForm		= 0; // To hide input form use value of 1, otherwise set to 0
+		hideForm		= 1; // To hide input form use value of 1, otherwise set to 0
 
 // Function Declarations
 
