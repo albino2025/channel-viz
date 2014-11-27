@@ -10,6 +10,8 @@
 <span id="unite"></span>
 <br>
 <span id="histo"></span>
+<br>
+<span id="nb"></span>
 <div id="chart"></div>
 
 
@@ -60,14 +62,17 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             $('#unite').html(datastreamData.unit.symbol);
             //$('#histo').html( datastreamData["Datapoints"]);
             var x = 10,
-            y=20;
+            y=20,
+            i=0;
             datastreamData.datapoints.forEach(function(datapoint) {
+                  i=i+1;
                   x = new Date(datapoint.at).getTime()/1000.0;
                   y = parseFloat(datapoint.value)
                   var chaine = chaine + x + " - " + y + "<br>";
                   $('#histo').html(chaine);// " - " y "<br>");
                   
             });
+            $('#nb').html(i);
       });
       
     });  
