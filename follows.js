@@ -145,6 +145,7 @@
 
 						 			// Build Graph
 									var graph = new Rickshaw.Graph( {
+										/*
 										element: document.querySelector('#graph-' + feedId + '-' + datastream.id),
 										width: 600,
 										height: 200,
@@ -158,6 +159,31 @@
 											left: 0.02
 										},
 										series: series
+										*/
+										element: document.getElementById('graph-' + feedId + '-' + datastream.id),
+										renderer: 'multi',
+										width: 600,
+										height: 200,
+										min: parseFloat(datastream.min_value) - .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
+										max: parseFloat(datastream.max_value) + .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
+										padding: {
+											top: 0.02,
+											right: 0.02,
+											bottom: 0.02,
+											left: 0.02
+										},
+										series: [
+											{
+												name: 'temp1',
+												data: series,
+												color: 'rgba(127, 0, 0, 0.3)',
+												renderer: 'scatterplot'
+											}, {
+												name: 'temp2',
+												data: series,
+												color: 'rgba(0, 0, 127, 0.4)',
+												renderer: 'bar'
+											} ]
 									});
 
 									graph.render();
