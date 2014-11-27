@@ -71,8 +71,8 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   i=i+1;
                   xx = new Date(datapoint.at).getTime()/1000.0;
                   yy = parseFloat(datapoint.value);
-                  points.push({x: xx, y: yy});
-                  chaine = chaine + i + " - " + yy + "<br>";
+                  points.push({x: i, y: yy});
+                  chaine = chaine + xx + " - " + yy + "<br>";
                   $('#histo').html(chaine);// " - " y "<br>");
                   
             });
