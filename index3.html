@@ -25,7 +25,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
       
       // Replace with your own values  
         var feedID        = 172663481,          // Feed ID  
-        datastreamID  = "Temp_Ext";       // Datastream ID  
+        datastreamID  = "Temp_Ext",       // Datastream ID  
         selector      = "#myelement";   // Your element on the page  
       
       // Get datastream data from Xively  
@@ -59,8 +59,12 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
       xively.datastream.history(feedID, datastreamID, {duration: '6hours', interval: 30, limit: 1000}, function(datastreamData) {
             $('#unite').html(datastreamData.unit.symbol);
             //$('#histo').html( datastreamData["Datapoints"]);
+            var x = 0,
+            y=0;
             datastreamData.datapoints.forEach(function(datapoint) {
-                  $('#histo').html(new Date(datapoint.at).getTime()/1000.0 " - " parseFloat(datapoint.value) "<br>");
+                  x = new Date(datapoint.at).getTime()/1000.0;
+                  y = parseFloat(datapoint.value)
+                  $('#histo').html(x " - " y "<br>");
             });
       });
       
