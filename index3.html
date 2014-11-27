@@ -60,7 +60,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             $('#unite').html(datastreamData.unit.symbol);
             //$('#histo').html( datastreamData["Datapoints"]);
             datastreamData.datapoints.forEach(function(datapoint) {
-                  $('#histo').html(new Date(datapoint.at).getTime()/1000.0 " - " parseFloat(datapoint.value));
+                  $('#histo').html(new Date(datapoint.at).getTime()/1000.0 " - " parseFloat(datapoint.value) "<br>");
             });
       });
       
