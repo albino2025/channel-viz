@@ -145,7 +145,7 @@
 
 						 			// Build Graph
 									var graph = new Rickshaw.Graph( {
-										/*
+										
 										element: document.querySelector('#graph-' + feedId + '-' + datastream.id),
 										width: 600,
 										height: 200,
@@ -159,7 +159,7 @@
 											left: 0.02
 										},
 										series: series
-										*/
+										/*
 										element: document.getElementById('graph-' + feedId + '-' + datastream.id),
 										renderer: 'multi',
 										width: 600,
