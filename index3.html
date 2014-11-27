@@ -68,12 +68,13 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             yy=20,
             i=0,
             chaine = "",
-            var points = [];
+            points = ["pomme","bananes"];
             datastreamData.datapoints.forEach(function(datapoint) {
                   i=i+1;
                   xx = new Date(datapoint.at).getTime()/1000.0;
                   yy = parseFloat(datapoint.value);
-                  points.push({x: i, y: yy});
+                  //points.push({x: i, y: yy});
+                  points.push("fraise");
                   chaine = chaine + xx + " - " + yy + "<br>";
                   $('#histo').html(chaine);// " - " y "<br>");
                   
