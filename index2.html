@@ -12,10 +12,16 @@ var graph = new Rickshaw.Graph( {
         element: document.querySelector("#chart"),
         width: 580,
         height: 250,
+        renderer: 'multi',
         series: [ {
                 color: 'steelblue',
+                renderer: 'stack',
                 data: data
-        } ]
+        },{
+                color: 'steelblue',
+                renderer: 'bar',
+                data: data
+        }  ]
 } );
 
 graph.render();
