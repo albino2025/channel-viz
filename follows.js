@@ -160,7 +160,7 @@
 										},
 										series: series
 										*/
-										element: document.getElementById('graph-' + feedId + '-' + datastream.id),
+										element: document.getElementById('#graph-' + feedId + '-' + datastream.id),
 										renderer: 'multi',
 										width: 600,
 										height: 200,
