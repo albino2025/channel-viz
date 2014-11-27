@@ -37,7 +37,6 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
       
         // Display the current value from the datastream  
         $(selector).html( datastream["current_value"] );  
-        $('#histo').html( datastream["Datapoints"]);
       
         // Getting realtime!   
         // The function associated with the subscribe method will be executed   
@@ -51,6 +50,11 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
       
       // WARNING: Code here will continue executing while we get the datastream data from Xively,   
       // use the function associated with datastream.get to work with the data   
-      // once the request is complete  
+      // once the request is complete 
+      
+      xively.datastream.history(feedID, datastreamID, {duration: '6hours', interval: 30, limit: 1000}, function(datastreamData) {
+            $('#histo').html( datastreamData["Datapoints"]);
+      });
+      
     });  
 </script>
