@@ -5,8 +5,10 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>  
 <script src="js/xivelyjs-1.0.0.min.js"></script>  
 
-<div id="chart"></div>
 <span id="myelement"></span>
+<span id="histo"></span>
+<div id="chart"></div>
+
 
 <script>
 
@@ -35,6 +37,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
       
         // Display the current value from the datastream  
         $(selector).html( datastream["current_value"] );  
+        $(#histo).html( datastream["Datapoints"]);
       
         // Getting realtime!   
         // The function associated with the subscribe method will be executed   
