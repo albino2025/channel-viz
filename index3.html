@@ -53,7 +53,8 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
       // once the request is complete 
       
       xively.datastream.history(feedID, datastreamID, {duration: '6hours', interval: 30, limit: 1000}, function(datastreamData) {
-            $('#histo').html( datastreamData["Datapoints"]);
+            $('#histo').html(datastream.current_value);
+            //$('#histo').html( datastreamData["Datapoints"]);
       });
       
     });  
