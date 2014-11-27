@@ -9,21 +9,22 @@
 var data = [ { x: 0, y: 40 }, { x: 1, y: 49 }, { x: 2, y: 17 }, { x: 3, y: 42 } ];
 
 var graph = new Rickshaw.Graph( {
-        element: document.querySelector("#chart"),
+        //element: document.querySelector("#chart"),
+        element: document.getElementById("chart"),
         width: 580,
         height: 250,
-        /*renderer: 'stack',*/
+        renderer: 'multi',
         series: [ {
                 name : 'test1',
                 color: 'steelblue',
                 /*renderer: 'stack',*/
                 data: data
-        }/*,{
+        },{
                 name : 'test2',
                 color: 'rgba(255, 127, 0, 0.4)',
                 renderer: 'bar',
                 data: data
-        }*/  ]
+        }  ]
 } );
 
 graph.render();
