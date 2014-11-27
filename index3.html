@@ -68,7 +68,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             yy=20,
             i=0,
             chaine = "",
-            points = [];
+            var points = [];
             datastreamData.datapoints.forEach(function(datapoint) {
                   i=i+1;
                   xx = new Date(datapoint.at).getTime()/1000.0;
