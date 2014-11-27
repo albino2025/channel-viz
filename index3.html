@@ -12,6 +12,7 @@
 <span id="histo"></span>
 <br>
 <span id="nb"></span>
+<br>
 <div id="chart"></div>
 
 
@@ -76,6 +77,15 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   
             });
             $('#nb').html(i);
+            var graph = new Rickshaw.Graph( {
+                  element: document.querySelector("#chart"),
+                  width: 580,
+                  height: 250,
+                  series: [ {
+                  color: 'steelblue',
+                  data: points
+                  } ]
+            } );
       });
       
     });  
