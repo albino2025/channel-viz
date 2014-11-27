@@ -12,11 +12,11 @@ var graph = new Rickshaw.Graph( {
         element: document.querySelector("#chart"),
         width: 580,
         height: 250,
-        renderer: 'multi',
+        renderer: 'stack',
         series: [ {
                 name : 'test1',
                 color: 'steelblue',
-                renderer: 'stack',
+                /*renderer: 'stack',*/
                 data: data
         }/*,{
                 name : 'test2',
