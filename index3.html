@@ -61,15 +61,17 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
       xively.datastream.history(feedID, datastreamID, {duration: '6hours', interval: 30, limit: 1000}, function(datastreamData) {
             $('#unite').html(datastreamData.unit.symbol);
             //$('#histo').html( datastreamData["Datapoints"]);
-            var x = 10,
-            y=20,
+            var xx = 10,
+            yy=20,
             i=0,
-            chaine = "";
+            chaine = "",
+            points = [];
             datastreamData.datapoints.forEach(function(datapoint) {
                   i=i+1;
-                  x = new Date(datapoint.at).getTime()/1000.0;
-                  y = parseFloat(datapoint.value)
-                  chaine = chaine + x + " - " + y + "<br>";
+                  xx = new Date(datapoint.at).getTime()/1000.0;
+                  yy = parseFloat(datapoint.value);
+                  points.push({x: xx, y: yy});
+                  chaine = chaine + xx + " - " + yy + "<br>";
                   $('#histo').html(chaine);// " - " y "<br>");
                   
             });
