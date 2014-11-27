@@ -71,18 +71,18 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             //points = ["pomme","bananes"];
             points = [];
             datastreamData.datapoints.forEach(function(datapoint) {
-                  i=i+1;
                   xx = new Date(datapoint.at).getTime()/1000.0;
                   yy = parseFloat(datapoint.value);
                   points.push({x: i, y: yy});
                   //points.push("fraise");
                   chaine = chaine + xx + " - " + yy + "<br>";
                   $('#histo').html(chaine);// " - " y "<br>");
+                  i=i+1;
                   
             });
             $('#nb').html(i);
             $('#tab').html(points[i-1].y);
-            /*
+            
             var graph = new Rickshaw.Graph( {
                   element: document.querySelector("#chart"),
                   width: 580,
@@ -92,7 +92,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   data: points
                   } ]
             } );
-            */
+            
       });
       
     });  
