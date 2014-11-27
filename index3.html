@@ -63,12 +63,13 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             //$('#histo').html( datastreamData["Datapoints"]);
             var x = 10,
             y=20,
-            i=0;
+            i=0,
+            chaine = "";
             datastreamData.datapoints.forEach(function(datapoint) {
                   i=i+1;
                   x = new Date(datapoint.at).getTime()/1000.0;
                   y = parseFloat(datapoint.value)
-                  var chaine = chaine + x + " - " + y + "<br>";
+                  chaine = chaine + x + " - " + y + "<br>";
                   $('#histo').html(chaine);// " - " y "<br>");
                   
             });
