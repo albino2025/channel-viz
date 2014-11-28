@@ -90,9 +90,9 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   yy = parseFloat(datapoint.value);
                   points.push({x: xx, y: yy});
                   points2.push({x: xx, y: yy});
-                  points2.push({x: xx, y: yy});
+                  points2.push({x: xx+1, y: yy+1});
                   chaine3 = chaine3 + xx + " - " + yy + "<br>";
-                  chaine3 = chaine3 + xx + " - " + yy + "<br>";
+                  chaine3 = chaine3 + (xx+1) + " - " + (yy+1) + "<br>";
                   /*if (i > 0) {
                         points2.push({x : xx-1, y: points2[i-1].y});
                         chaine3 = chaine3 + xx-1 + " - " + points2[i-1].y + "<br>";
