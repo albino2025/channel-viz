@@ -21,7 +21,10 @@ valeur date xively             -           valeur date now              -       
 <div id="chart"></div>
 <br>
 <div id="chart2"></div>
-
+<br>
+<div id="chartb"></div>
+<br>
+<div id="chart2b"></div>
 
 <script>
 
@@ -75,11 +78,16 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             chaine = "",
             chaine2 = "";
             //points = ["pomme","bananes"];
-            points = [];
+            points = [],
+            points2 = [];
             datastreamData.datapoints.forEach(function(datapoint) {
                   xx = new Date(datapoint.at).getTime()/1000.0;
                   yy = parseFloat(datapoint.value);
                   points.push({x: xx, y: yy});
+                  points2.push({x: xx, y: yy});
+                  if (i > 0) {
+                        points2.push({x : xx-1, y: points2[i-1].y});
+                  }
                   //points.push("fraise");
                   chaine = chaine + xx + " - " + yy + "<br>";
                   chaine2 = chaine2 + datapoint.at + "            -                       -           " + xx + "<br>";
@@ -115,6 +123,32 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   series: [ {
                   color: 'steelblue',
                   data: points
+                  } ]
+            } );
+            
+            graph2.render();
+            
+                        var graph = new Rickshaw.Graph( {
+                  element: document.querySelector("#chartb"),
+                  width: 580,
+                  height: 250,
+                  renderer: 'scatterplot',
+                  series: [ {
+                  color: 'steelblue',
+                  data: points2
+                  } ]
+            } );
+            
+            graph.render();
+            
+            var graph2 = new Rickshaw.Graph( {
+                  element: document.querySelector("#chart2b"),
+                  width: 580,
+                  height: 250,
+                  renderer: 'bar',
+                  series: [ {
+                  color: 'steelblue',
+                  data: points2
                   } ]
             } );
             
