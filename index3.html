@@ -19,6 +19,8 @@ valeur date xively             -           valeur date now              -       
 <span id="tab"></span>
 <br>
 <div id="chart"></div>
+<br>
+<div id="chart2"></div>
 
 
 <script>
@@ -97,7 +99,19 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   width: 580,
                   height: 250,
                   series: [ {
-                  color: 'steelblue',
+                  color: 'scatterplot',
+                  data: points
+                  } ]
+            } );
+            
+            graph.render();
+            
+            var graph = new Rickshaw.Graph( {
+                  element: document.querySelector("#chart2"),
+                  width: 580,
+                  height: 250,
+                  series: [ {
+                  color: 'bar',
                   data: points
                   } ]
             } );
