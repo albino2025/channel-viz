@@ -100,19 +100,21 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   //points.push("fraise");
                   chaine = chaine + xx + " - " + yy + "<br>";
                   chaine2 = chaine2 + datapoint.at + "            -                       -           " + xx + "<br>";
-                  xx = Date.now();
-                  points2.push({x : xx, y: (points2[points2.length-1].y)});
-                  chaine3 = chaine3 + xx + " - " + (points2[points2.length-1].y) + "<br>";
                   
-                  
-                  $('#histo').html(chaine);// " - " y "<br>");
-                  $('#date').html(chaine2);
-                  $('#histo2').html(chaine3);
                   i=i+1;
                   
             });
             $('#nb').html(i);
             $('#tab').html(points[i-1].y);
+            
+            xx = Date.now();
+            points2.push({x : xx, y: (points2[points2.length-1].y)});
+            chaine3 = chaine3 + xx + " - " + (points2[points2.length-1].y) + "<br>";
+            
+            $('#histo').html(chaine);// " - " y "<br>");
+            $('#date').html(chaine2);
+            $('#histo2').html(chaine3);
+            
             
             //var data = [ {x: points[0].x, y: points[0].y}, {x: points[1].x, y: points[1].y}, {x: points[2].x, y: points[2].y}, {x: points[3].x, y: points[3].y}]
             //var data = [ { x: 0, y: 40 }, { x: 1, y: 49 }, { x: 2, y: 17 }, { x: 3, y: 42 } ];
