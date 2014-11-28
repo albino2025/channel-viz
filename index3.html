@@ -13,6 +13,9 @@
 <br>
 <span id="nb"></span>
 <br>
+valeur date xively             -           valeur date now              -            valeur date calculee<br>
+<span id="date"></span>
+<br>
 <span id="tab"></span>
 <br>
 <div id="chart"></div>
@@ -68,6 +71,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             yy=20,
             i=0,
             chaine = "",
+            chaine2 = "";
             //points = ["pomme","bananes"];
             points = [];
             datastreamData.datapoints.forEach(function(datapoint) {
@@ -76,7 +80,9 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   points.push({x: xx, y: yy});
                   //points.push("fraise");
                   chaine = chaine + xx + " - " + yy + "<br>";
+                  chaine2 = chaine2 + datapoint.at + "            -                       -           " + xx;
                   $('#histo').html(chaine);// " - " y "<br>");
+                  $('#date').html(chaine2);
                   i=i+1;
                   
             });
