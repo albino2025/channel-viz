@@ -100,6 +100,11 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   //points.push("fraise");
                   chaine = chaine + xx + " - " + yy + "<br>";
                   chaine2 = chaine2 + datapoint.at + "            -                       -           " + xx + "<br>";
+                  xx = Date.now();
+                  points2.push({x : xx, y: (points2[points2.length-1].y)});
+                  chaine3 = chaine3 + xx + " - " + (points2[points2.length-1].y) + "<br>";
+                  
+                  
                   $('#histo').html(chaine);// " - " y "<br>");
                   $('#date').html(chaine2);
                   $('#histo2').html(chaine3);
