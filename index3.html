@@ -84,7 +84,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             $('#tab').html(points[i-1].y);
             
             //var data = [ {x: points[0].x, y: points[0].y}, {x: points[1].x, y: points[1].y}, {x: points[2].x, y: points[2].y}, {x: points[3].x, y: points[3].y}]
-            var data = [ { x: 0, y: 40 }, { x: 1, y: 49 }, { x: 2, y: 17 }, { x: 3, y: 42 } ];
+            //var data = [ { x: 0, y: 40 }, { x: 1, y: 49 }, { x: 2, y: 17 }, { x: 3, y: 42 } ];
             
             var graph = new Rickshaw.Graph( {
                   element: document.querySelector("#chart"),
@@ -92,7 +92,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   height: 250,
                   series: [ {
                   color: 'steelblue',
-                  data: data
+                  data: points
                   } ]
             } );
             
