@@ -83,13 +83,15 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             $('#nb').html(i);
             $('#tab').html(points[i-1].y);
             
+            var data = [ {x: points[0].x, y: points[0].y}, {x: points[1].x, y: points[1].y}, {x: points[2].x, y: points[2].y}, {x: points[3].x, y: points[3].y}]
+            
             var graph = new Rickshaw.Graph( {
                   element: document.querySelector("#chart"),
                   width: 580,
                   height: 250,
                   series: [ {
                   color: 'steelblue',
-                  data: points
+                  data: data
                   } ]
             } );
             
