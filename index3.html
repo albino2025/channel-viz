@@ -199,12 +199,17 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
 		legend: legend
             } );
             
-            
+            // surligne le graph correspondant à la legende survolee
             var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
     		graph: graph4,
 		legend: legend
 	    });
-
+	    
+	    // Add a basic x-axis with time values:
+		var xAxis = new Rickshaw.Graph.Axis.Time({
+    			graph: graph
+		});
+		xAxis.render();
             
       });
       
