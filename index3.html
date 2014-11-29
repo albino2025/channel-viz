@@ -186,13 +186,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   	data: points3
                   } ]
             } );
-            
-            	    // Add a basic x-axis with time values:
-		var xAxis = new Rickshaw.Graph.Axis.Time({
-    			graph: graph4
-		});
-		//xAxis.render();
-            
+    
             graph4.render();
             
             // affiche les valeurs x et y du point survolé (mais que d'une serie)
@@ -218,7 +212,11 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
 		legend: legend
 	    });
 	    
-
+	    // Add a basic x-axis with time values:
+	    var xAxis = new Rickshaw.Graph.Axis.Time({
+    		graph: graph4
+	    });
+	    xAxis.render();
             
       });
       
