@@ -28,7 +28,7 @@ valeur date xively             -           valeur date now              -       
 <br>
 <div id="chartb"></div>
 <br>
-<div id="chart2b"></div>
+<div id="chart2b"></div><div id="legend"></div>
 
 <script>
 
@@ -178,6 +178,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             	graph: graph4
             } );
             
+            //affiche la legende dans la div legend
             var legend = new Rickshaw.Graph.Legend( {
 	            graph: graph4,
 	            element: document.getElementById('legend')
