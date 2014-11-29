@@ -182,7 +182,7 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             
             graph4.render();
             
-            // affiche les valeurs x et y du point survolé
+            // affiche les valeurs x et y du point survolé (mais que d'une serie)
             var hoverDetail = new Rickshaw.Graph.HoverDetail( {
             	graph: graph4
             } );
@@ -193,10 +193,18 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
 	            element: document.getElementById('legend')
             } );
             
+            //permet de selectionner / deselectionner les series à afficher
             var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
 		graph: graph4,
 		legend: legend
             } );
+            
+            
+            var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
+    		graph: graph4,
+		legend: legend
+	    });
+
             
       });
       
