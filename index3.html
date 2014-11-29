@@ -84,7 +84,8 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             chaine3 = "";
             //points = ["pomme","bananes"];
             points = [],
-            points2 = [];
+            points2 = [],
+            points3 = [];
             datastreamData.datapoints.forEach(function(datapoint) {
                   xx = new Date(datapoint.at).getTime()/1000.0;
                   yy = parseFloat(datapoint.value);
@@ -158,6 +159,10 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             
             graph3.render();
             
+            for (i=0; i<points2.length;i++){
+            	points3.push({x : ((points2[i].x), y: (points2[i].y + 2)});
+            }
+            
             var graph4 = new Rickshaw.Graph( {
                   element: document.querySelector("#chart2b"),
                   width: 580,
@@ -165,9 +170,13 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   interpolation: 'straight',
                   //renderer: 'line',
                   series: [ {
-                  color: '#6060c0',
-                  name: 'statut chauffage',
-                  data: points2
+                  	color: '#6060c0',
+                  	name: 'statut chauffage',
+                  	data: points2
+                  },{
+                  	color: '#30c020',
+                  	name: 'chauffage + 2',
+                  	data: points3
                   } ]
             } );
             
