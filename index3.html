@@ -31,14 +31,8 @@ valeur date xively             -           valeur date now              -       
 <br>
 <div id="chartb"></div>
 <br>
-<div id="chart_container" style="width:1000px;">
-	<div id="chart2b" style="width:580px;"></div>
-	<div id="legend_container">
-		<div id="smoother" title="Smoothing"></div>
-		<div id="legend" style="width:500px;font-size:10px;"></div>
-	</div>
-	<div id="slider"></div>
-</div>
+<div id="chart2b"></div><div id="legend"></div>
+
 
 <script>
 
@@ -192,7 +186,9 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
     
             graph4.render();
             
-            // affiche les valeurs x et y du point survolé (mais que d'une serie)
+            // ATTENTION, la suite necessite le css
+            
+            // affiche les valeurs x et y du point survolé 
             var hoverDetail = new Rickshaw.Graph.HoverDetail( {
             	graph: graph4
             } );
