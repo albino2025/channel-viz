@@ -166,14 +166,21 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
                   //renderer: 'line',
                   series: [ {
                   color: 'steelblue',
+                  name: 'statut chauffage',
                   data: points2
                   } ]
             } );
             
             graph4.render();
             
+            // affiche les valeurs x et y du point survolé
             var hoverDetail = new Rickshaw.Graph.HoverDetail( {
             	graph: graph4
+            } );
+            
+            var legend = new Rickshaw.Graph.Legend( {
+	            graph: graph4,
+	            element: document.getElementById('legend')
             } );
             
       });
