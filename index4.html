@@ -96,13 +96,13 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
             	points3.push({x : (points2[i].x), y: (points2[i].y + 2)});
             }
             
-            /*
+            
             var graph = new Rickshaw.Graph( {
                   element: document.querySelector("#chart"),
                   width: 580,
                   height: 250,
                   renderer: 'area',
-		  stroke: true, 
+		  stroke: false, 
                   interpolation: 'straight',
                   //renderer: 'line',
                   series: [ {
@@ -118,8 +118,8 @@ xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
     
             graph.renderer.unstack = true; 
             graph.render();
-            */
-
+            
+/*
 var graph = new Rickshaw.Graph( {
 	element: document.querySelector("#chart"),
 	width: 235,
@@ -136,6 +136,7 @@ var graph = new Rickshaw.Graph( {
 		stroke: 'rgba(0,0,0,0.15)'
 	} ]
 } );
+*/
 
 graph.renderer.unstack = true;
 graph.render();
