@@ -8,153 +8,154 @@
 <script src="js/xivelyjs-1.0.0.min.js"></script>
 
 <style>
-#chart_container {
-  position: relative;
-  display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-}
-#y_axis {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 40px;
-}
-#chart {
-  display: inline-block;
-  margin-left: 40px;
-}
-#legend {
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 0 0 10px;
-}
+  #chart_container {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #y_axis {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+  }
+  #chart {
+    display: inline-block;
+    margin-left: 40px;
+  }
+  #legend {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 10px;
+  }
 </style>
 
 <div id="chart_container">
-<div id="y_axis"></div><div id="chart"></div>
+  <div id="y_axis"></div><div id="chart"></div>
 </div>
 <div id="legend"></div>
 
 <script>
-// Make sure the document is ready to be handled
-$(document).ready(function($) {
+  // Make sure the document is ready to be handled
+  $(document).ready(function($) {
 
-// Set the Xively API key
-xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
-// Replace with your own values
-var feedID = 172663481, // Feed ID
-datastreamID = "Chauffage_Buanderie", // Datastream ID
+    // Set the Xively API key
+    xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
+    // Replace with your own values
+    var feedID = 172663481, // Feed ID
+    datastreamID = "Chauffage_Buanderie", // Datastream ID
 
-xively.datastream.history(feedID, datastreamID, {duration: '6hours', interval: 30, limit: 1000}, function(datastreamData) {
-  //$('#unite').html(datastreamData.unit.symbol);
-  //$('#histo').html( datastreamData["Datapoints"]);
-  var xx = 10,
-  yy=20,
-  i=0,
-  chaine = "",
-  chaine2 = "",
-  chaine3 = "";
-  //points = ["pomme","bananes"];
-  points = [],
-  points2 = [],
-  points3 = [];
-  datastreamData.datapoints.forEach(function(datapoint) {
-    xx = new Date(datapoint.at).getTime()/1000.0;
-    yy = parseFloat(datapoint.value);
-    points.push({x: xx, y: yy});
-    if (i > 0) {
-      points2.push({x : (xx-1), y: (points2[points2.length-1].y)});
-      chaine3 = chaine3 + (xx-1) + " - " + (points2[points2.length-1].y) + "<br>";
-    }
-    points2.push({x: xx, y: yy});
-    //points2.push({x: xx+1, y: yy+1});
-    chaine3 = chaine3 + xx + " - " + yy + "<br>";
-    //chaine3 = chaine3 + (xx+1) + " - " + (yy+1) + "<br>";
-    //points.push("fraise");
-    chaine = chaine + xx + " - " + yy + "<br>";
-    chaine2 = chaine2 + datapoint.at + " - - " + xx + "<br>";
-    i=i+1;
+    xively.datastream.history(feedID, datastreamID, {duration: '6hours', interval: 30, limit: 1000}, function(datastreamData) {
+      //$('#unite').html(datastreamData.unit.symbol);
+      //$('#histo').html( datastreamData["Datapoints"]);
+      var xx = 10,
+      yy=20,
+      i=0,
+      chaine = "",
+      chaine2 = "",
+      chaine3 = "";
+      //points = ["pomme","bananes"];
+      points = [],
+      points2 = [],
+      points3 = [];
+      datastreamData.datapoints.forEach(function(datapoint) {
+        xx = new Date(datapoint.at).getTime()/1000.0;
+        yy = parseFloat(datapoint.value);
+        points.push({x: xx, y: yy});
+        if (i > 0) {
+          points2.push({x : (xx-1), y: (points2[points2.length-1].y)});
+          chaine3 = chaine3 + (xx-1) + " - " + (points2[points2.length-1].y) + "<br>";
+        }
+        points2.push({x: xx, y: yy});
+        //points2.push({x: xx+1, y: yy+1});
+        chaine3 = chaine3 + xx + " - " + yy + "<br>";
+        //chaine3 = chaine3 + (xx+1) + " - " + (yy+1) + "<br>";
+        //points.push("fraise");
+        chaine = chaine + xx + " - " + yy + "<br>";
+        chaine2 = chaine2 + datapoint.at + " - - " + xx + "<br>";
+        i=i+1;
+      });
+      xx = Date.now()/1000.0;
+      points2.push({x : xx, y: (points2[points2.length-1].y)});
+      chaine3 = chaine3 + xx + " - " + (points2[points2.length-1].y) + "<br>";
+      for (i = 0; i < points2.length; i++){
+        points3.push({x : (points2[i].x), y: (points2[i].y + 2)});
+      }
+      var graph = new Rickshaw.Graph( {
+        element: document.querySelector("#chart"),
+        width: 580,
+        height: 250,
+        renderer: 'area',
+        interpolation: 'straight',
+        unstack : true,
+        stroke: true,
+        //renderer: 'line',
+        series: [ {
+          color: 'rgba(70,130,180,0.5)',
+          stroke: 'rgba(0,0,0,0.15)',
+          name: 'statut chauffage',
+          data: points2
+        },{
+          color: 'rgba(202,226,247,0.5)',
+          stroke: 'rgba(0,0,0,0.15)',
+          name: 'chauffage_2',
+          data: points3
+        } ]
+      } );
+      graph.render();
+      /*
+      var graph = new Rickshaw.Graph( {
+        element: document.querySelector("#chart"),
+        width: 235,
+        height: 85,
+        renderer: 'area',
+        stroke: true,
+        series: [ {
+          data: [ { x: 0, y: 40 }, { x: 1, y: 49 }, { x: 2, y: 38 }, { x: 3, y: 20 }, { x: 4, y: 16 } ],
+          color: 'rgba(70,130,180,0.5)',
+          stroke: 'rgba(0,0,0,0.15)'
+        }, {
+          data: [ { x: 0, y: 22 }, { x: 1, y: 25 }, { x: 2, y: 38 }, { x: 3, y: 44 }, { x: 4, y: 46 } ],
+          color: 'rgba(202,226,247,0.5)',
+          stroke: 'rgba(0,0,0,0.15)'
+        } ]
+      } );
+      */
+      graph.renderer.unstack = true;
+      graph.render();
+    
+      // ATTENTION, la suite necessite le css
+      // affiche les valeurs x et y du point survolé
+      var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+        graph: graph
+      } );
+      //affiche la legende dans la div legend
+      var legend = new Rickshaw.Graph.Legend( {
+        graph: graph,
+        element: document.getElementById('legend')
+      } );
+      //permet de selectionner / deselectionner les series à afficher
+      var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+        graph: graph,
+        legend: legend
+      } );
+      // surligne le graph correspondant à la legende survolee
+      var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
+        graph: graph,
+        legend: legend
+      });
+      // Add a basic x-axis with time values:
+      var xAxis = new Rickshaw.Graph.Axis.Time({
+        graph: graph
+      });
+      xAxis.render();
+      var y_axis = new Rickshaw.Graph.Axis.Y( {
+        graph: graph,
+        orientation: 'left',
+        tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+        element: document.getElementById('y_axis'),
+      } );
+      y_axis.render();
+    });
   });
-  xx = Date.now()/1000.0;
-  points2.push({x : xx, y: (points2[points2.length-1].y)});
-  chaine3 = chaine3 + xx + " - " + (points2[points2.length-1].y) + "<br>";
-  for (i = 0; i < points2.length; i++){
-    points3.push({x : (points2[i].x), y: (points2[i].y + 2)});
-  }
-  var graph = new Rickshaw.Graph( {
-    element: document.querySelector("#chart"),
-    width: 580,
-    height: 250,
-    renderer: 'area',
-    interpolation: 'straight',
-    unstack : true,
-    stroke: true,
-    //renderer: 'line',
-    series: [ {
-      color: 'rgba(70,130,180,0.5)',
-      stroke: 'rgba(0,0,0,0.15)',
-      name: 'statut chauffage',
-      data: points2
-    },{
-      color: 'rgba(202,226,247,0.5)',
-      stroke: 'rgba(0,0,0,0.15)',
-      name: 'chauffage_2',
-      data: points3
-    } ]
-  } );
-  graph.render();
-  /*
-  var graph = new Rickshaw.Graph( {
-    element: document.querySelector("#chart"),
-    width: 235,
-    height: 85,
-    renderer: 'area',
-    stroke: true,
-    series: [ {
-      data: [ { x: 0, y: 40 }, { x: 1, y: 49 }, { x: 2, y: 38 }, { x: 3, y: 20 }, { x: 4, y: 16 } ],
-      color: 'rgba(70,130,180,0.5)',
-      stroke: 'rgba(0,0,0,0.15)'
-    }, {
-      data: [ { x: 0, y: 22 }, { x: 1, y: 25 }, { x: 2, y: 38 }, { x: 3, y: 44 }, { x: 4, y: 46 } ],
-      color: 'rgba(202,226,247,0.5)',
-      stroke: 'rgba(0,0,0,0.15)'
-    } ]
-  } );
-  */
-  graph.renderer.unstack = true;
-  graph.render();
-
-  // ATTENTION, la suite necessite le css
-  // affiche les valeurs x et y du point survolé
-  var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-    graph: graph
-  } );
-  //affiche la legende dans la div legend
-  var legend = new Rickshaw.Graph.Legend( {
-    graph: graph,
-    element: document.getElementById('legend')
-  } );
-  //permet de selectionner / deselectionner les series à afficher
-  var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
-    graph: graph,
-    legend: legend
-  } );
-  // surligne le graph correspondant à la legende survolee
-  var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
-    graph: graph,
-    legend: legend
-  });
-  // Add a basic x-axis with time values:
-  var xAxis = new Rickshaw.Graph.Axis.Time({
-    graph: graph
-  });
-  xAxis.render();
-  var y_axis = new Rickshaw.Graph.Axis.Y( {
-    graph: graph,
-    orientation: 'left',
-    tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-    element: document.getElementById('y_axis'),
-  } );
-  y_axis.render();
-});
 </script>
