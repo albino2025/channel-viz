@@ -52,10 +52,7 @@ $(document).ready(function($) {
 	// Replace with your own values  
         var feedID        = 172663481,          // Feed ID  
         datastreamID  = "Chauffage_Buanderie";       // Datastream ID  
-        
-        $('#legend').html(datastreamID);
 
-	/*
 	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
       
 		var xx = 10,
@@ -68,7 +65,7 @@ $(document).ready(function($) {
 		points2 = [],
 		points3 = [];
 		
-		$("legend").html(feedData.title);
+		//$("legend").html(feedData.title);
             
         	feedData.datastreams.forEach(function(datasreamData) {
             
@@ -166,6 +163,6 @@ $(document).ready(function($) {
         	});
 
 	});
-	*/
+	
 });	
 </script>
