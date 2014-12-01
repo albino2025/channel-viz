@@ -69,7 +69,7 @@ $(document).ready(function($) {
             
         	feedData.datastreams.forEach(function(datasreamData) {
             
-			if (datastreamData.title = datastreamID) {
+			if (datastreamData.title == datastreamID) {
             
 				datastreamData.datapoints.forEach(function(datapoint) {
 					xx = new Date(datapoint.at).getTime()/1000.0;
