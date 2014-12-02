@@ -81,7 +81,7 @@ $(document).ready(function($) {
             var props="";
             for (prop in datastreamData){ props+= prop +  " => " +datastreamData[prop] + "\n"; };
 	    $('#legend').html(props);
-	    */
+	    
 	    chaine = chaine + "<br>" + datastreamData.id;
 	    //$('#legend').html(datastreamData.id);
             if (datastreamData.id == "Chauffage_Buanderie") {
@@ -89,8 +89,9 @@ $(document).ready(function($) {
             } else {
             	chaine = chaine + " => Different";
             }
+            */
             
-			/*
+			
 			if (datastreamData.id == datastreamID) {
             
 				datastreamData.datapoints.forEach(function(datapoint) {
@@ -180,8 +181,8 @@ $(document).ready(function($) {
 				});
 				y_axis.render();
 
-			});
-			*/
+			};
+			
       		
         });
         $('#legend').html(chaine);
