@@ -72,7 +72,7 @@ $(document).ready(function($) {
         
         feedData.datastreams.forEach(function(datastreamData) {
             i = i+1;
-            $('#legend').html(datastreamData);
+            $('#legend').html(datastreamData.tostring());
             
             /*
 			if (datastreamData.title == datastreamID) {
