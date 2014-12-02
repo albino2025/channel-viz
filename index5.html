@@ -68,7 +68,9 @@ $(document).ready(function($) {
 		
 		//$('#legend').html("dans la boucle feed.history");
 		$('#legend').html(feedData.title);
-		$('#legend').html(feedData.tostring);
+		var props="";
+		for (prop in feedData){ props+= prop +  " => " +feedData[prop] + "\n"; };
+		$('#legend').html(props);
             
         
         feedData.datastreams.forEach(function(datastreamData) {
