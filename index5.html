@@ -76,6 +76,7 @@ $(document).ready(function($) {
         
         feedData.datastreams.forEach(function(datastreamData) {
             i = i+1;
+            var props="";
             for (prop in datastreamData){ props+= prop +  " => " +datastreamData[prop] + "\n"; };
 	    $('#legend').html(props);
             
