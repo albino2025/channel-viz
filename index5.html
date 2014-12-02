@@ -66,16 +66,18 @@ $(document).ready(function($) {
 		points2 = [],
 		points3 = [];
 		
-		//$('#legend').html("dans la boucle feed.history");
+		/*
+		$('#legend').html("dans la boucle feed.history");
 		$('#legend').html(feedData.title);
 		var props="";
 		for (prop in feedData){ props+= prop +  " => " +feedData[prop] + "\n"; };
 		$('#legend').html(props);
-            
+		*/
         
         feedData.datastreams.forEach(function(datastreamData) {
             i = i+1;
-            //$('#legend').html(i);
+            for (prop in datastreamData){ props+= prop +  " => " +datastreamData[prop] + "\n"; };
+	    $('#legend').html(props);
             
             /*
 			if (datastreamData.title == datastreamID) {
