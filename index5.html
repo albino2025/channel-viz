@@ -73,6 +73,7 @@ $(document).ready(function($) {
 		for (prop in feedData){ props+= prop +  " => " +feedData[prop] + "\n"; };
 		$('#legend').html(props);
 		*/
+		var chaine="";
         
         feedData.datastreams.forEach(function(datastreamData) {
             /*
@@ -81,7 +82,8 @@ $(document).ready(function($) {
             for (prop in datastreamData){ props+= prop +  " => " +datastreamData[prop] + "\n"; };
 	    $('#legend').html(props);
 	    */
-	    $('#legend').html(datastreamData.id);
+	    chaine = chaine + "<br>" + datastreamData.id;
+	    //$('#legend').html(datastreamData.id);
             
             
 			/*
@@ -178,6 +180,7 @@ $(document).ready(function($) {
 			*/
       		
         });
+        $('#legend').html(chaine);
         
 
 	});
