@@ -68,7 +68,7 @@ $(document).ready(function($) {
 		
 		//$('#legend').html("dans la boucle feed.history");
 		$('#legend').html(feedData.title);
-		$('#legend').html(feedData.datastreams.length);
+		$('#legend').html(feedData.tostring);
             
         
         feedData.datastreams.forEach(function(datastreamData) {
