@@ -75,13 +75,15 @@ $(document).ready(function($) {
 		*/
         
         feedData.datastreams.forEach(function(datastreamData) {
+            /*
             i = i+1;
             var props="";
             for (prop in datastreamData){ props+= prop +  " => " +datastreamData[prop] + "\n"; };
 	    $('#legend').html(props);
+	    */
             
-            /*
-			if (datastreamData.title == datastreamID) {
+            
+			if (datastreamData.id == datastreamID) {
             
 				datastreamData.datapoints.forEach(function(datapoint) {
 					xx = new Date(datapoint.at).getTime()/1000.0;
@@ -171,7 +173,7 @@ $(document).ready(function($) {
 				y_axis.render();
 
 			});
-      		*/
+      		
         });
         
 
