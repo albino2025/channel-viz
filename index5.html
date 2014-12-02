@@ -81,8 +81,10 @@ $(document).ready(function($) {
             for (prop in datastreamData){ props+= prop +  " => " +datastreamData[prop] + "\n"; };
 	    $('#legend').html(props);
 	    */
+	    $('#legend').html(datastreamData.id);
             
             
+			/*
 			if (datastreamData.id == datastreamID) {
             
 				datastreamData.datapoints.forEach(function(datapoint) {
@@ -173,6 +175,7 @@ $(document).ready(function($) {
 				y_axis.render();
 
 			});
+			*/
       		
         });
         
