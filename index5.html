@@ -65,32 +65,9 @@ $(document).ready(function($) {
 		points2 = [],
 		points3 = [];
 		
-		/*
-		$('#legend').html("dans la boucle feed.history");
-		$('#legend').html(feedData.title);
-		var props="";
-		for (prop in feedData){ props+= prop +  " => " +feedData[prop] + "\n"; };
-		$('#legend').html(props);
-		*/
-		var chaine="";
         
         feedData.datastreams.forEach(function(datastreamData) {
-            /*
-            i = i+1;
-            var props="";
-            for (prop in datastreamData){ props+= prop +  " => " +datastreamData[prop] + "\n"; };
-	    $('#legend').html(props);
-	    
-	    chaine = chaine + "<br>" + datastreamData.id;
-	    //$('#legend').html(datastreamData.id);
-            if (datastreamData.id == "Chauffage_Buanderie") {
-            	chaine = chaine + " => Pareil";
-            } else {
-            	chaine = chaine + " => Different";
-            }
-            */
-            
-			
+
 			if (datastreamData.id == datastreamID) {
             
 				datastreamData.datapoints.forEach(function(datapoint) {
@@ -99,20 +76,13 @@ $(document).ready(function($) {
 					points.push({x: xx, y: yy});
 					if (i > 0) {
 						points2.push({x : (xx-1), y: (points2[points2.length-1].y)});
-						chaine3 = chaine3 + (xx-1) + " - " + (points2[points2.length-1].y) + "<br>";
 					}
                   			points2.push({x: xx, y: yy});
-					chaine3 = chaine3 + xx + " - " + yy + "<br>";
-					chaine = chaine + xx + " - " + yy + "<br>";
-					chaine2 = chaine2 + datapoint.at + "            -                       -           " + xx + "<br>";
-                  
 					i=i+1;
-                  
 				});
           
 				xx = Date.now()/1000.0;
 				points2.push({x : xx, y: (points2[points2.length-1].y)});
-				chaine3 = chaine3 + xx + " - " + (points2[points2.length-1].y) + "<br>";
             
 				for (i = 0; i < points2.length; i++){
 					points3.push({x : (points2[i].x), y: (points2[i].y + 2)});
@@ -141,9 +111,6 @@ $(document).ready(function($) {
     
 				graph.render();
 				
-				
-graph.renderer.unstack = true;
-graph.render();
 
 				// ATTENTION, la suite necessite le css
             
@@ -190,8 +157,6 @@ graph.render();
 			
       		
         });
-        $('#legend').html(chaine);
-        
 
 	});
 	
