@@ -88,15 +88,7 @@ $(document).ready(function($) {
 				datastreamData.datapoints.forEach(function(datapoint) {
 					val_x = new Date(datapoint.at).getTime()/1000.0;
 					val_y = parseFloat(datapoint.value)*10;
-					if (i == 0) {
-						if (val_y == 0) {
-							serie_status_chauffage.push({x : serie_temp_voulue[0].x, y: 30});
-							serie_status_chauffage.push({x : (val_x-1), y: (serie_status_chauffage[serie_status_chauffage.length-1].y)});
-						} else {
-							serie_status_chauffage.push({x : serie_temp_voulue[0].x, y: 0});
-							serie_status_chauffage.push({x : (val_x-1), y: (serie_status_chauffage[serie_status_chauffage.length-1].y)});
-						}
-					} else {
+					if (i > 0) {
 						serie_status_chauffage.push({x : (val_x-1), y: (serie_status_chauffage[serie_status_chauffage.length-1].y)});
 					}
                   			serie_status_chauffage.push({x: val_x, y: val_y});
