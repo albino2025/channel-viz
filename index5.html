@@ -51,14 +51,13 @@ $(document).ready(function($) {
       
 	// Replace with your own values  
         var feedID        = 172663481, // Feed ID  
-        i = 0;
+        i = 0,
         datastreamID  = "Chauffage_Buanderie";       // Datastream ID  
 
 	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
       
 		var xx = 10,
 		yy=20,
-		i=0,
 		chaine = "",
 		chaine2 = "",
 		chaine3 = "",
