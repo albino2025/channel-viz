@@ -99,6 +99,14 @@ $(document).ready(function($) {
 				serie_status_chauffage.push({x : val_x, y: (serie_status_chauffage[serie_status_chauffage.length-1].y)});
 			}
         });
+        
+        if (serie_status_chauffage[0].y == 0) {
+		serie_status_chauffage.unshift({x : (serie_status_chauffage[0].x - 1), y: 30});
+		serie_status_chauffage.unshift({x : serie_temp_voulue[0].x, y: 30});
+	} else {
+		serie_status_chauffage.unshift({x : (serie_status_chauffage[0].x - 1), y: 0});
+		serie_status_chauffage.unshift({x : serie_temp_voulue[0].x, y: 0});
+	}
 		
 		var graph = new Rickshaw.Graph( {
 			element: document.querySelector("#chart"),
