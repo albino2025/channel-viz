@@ -104,7 +104,8 @@ $(document).ready(function($) {
 			element: document.querySelector("#chart"),
 			width: 580,
 			height: 250,
-			renderer: 'area',
+			renderer: 'multi',
+			//renderer: 'area',
 			interpolation: 'straight',
 			unstack : true,
 			stroke: true,
@@ -112,15 +113,18 @@ $(document).ready(function($) {
 				color: 'rgba(70,130,180,0.5)',
 				stroke: 'rgba(0,0,0,0.15)',
 				name: 'statut chauffage',
+				renderer: 'area',
 				data: serie_status_chauffage
 			},{
 				color: 'rgba(202,226,247,0.5)',
 				stroke: 'rgba(0,0,0,0.15)',
 				name: 'temperature',
+				renderer: 'line',
 				data: serie_temp_reelle
 			},{
 				color: 'rgba(35,65,100,0.5)',
 				stroke: 'rgba(0,0,0,0.15)',
+				renderer: 'line',
 				name: 'consigne',
 				data: serie_temp_voulue
 			}]
