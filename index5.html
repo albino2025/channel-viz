@@ -98,80 +98,77 @@ $(document).ready(function($) {
                   			serie_temp_voulue.push({x: val_x, y: val_y});
 				});
 			}
-            
-			var graph = new Rickshaw.Graph( {
-				element: document.querySelector("#chart"),
-				width: 580,
-				height: 250,
-				renderer: 'area',
-				interpolation: 'straight',
-				unstack : true,
-				stroke: true,
-                  		series: [ {
-                        		color: 'rgba(70,130,180,0.5)',
-                        		stroke: 'rgba(0,0,0,0.15)',
-                  			name: 'statut chauffage',
-                  			data: serie_status_chauffage
-				},{
-					color: 'rgba(202,226,247,0.5)',
-					stroke: 'rgba(0,0,0,0.15)',
-					name: 'temperature',
-					data: serie_temp_reelle
-				},{
-					color: 'rgba(35,65,100,0.5)',
-					stroke: 'rgba(0,0,0,0.15)',
-					name: 'consigne',
-					data: serie_temp_voulue
-				}]
-			});
-    
-			graph.render();
+        });
+		
+		var graph = new Rickshaw.Graph( {
+			element: document.querySelector("#chart"),
+			width: 580,
+			height: 250,
+			renderer: 'area',
+			interpolation: 'straight',
+			unstack : true,
+			stroke: true,
+			series: [ {
+               	color: 'rgba(70,130,180,0.5)',
+               	stroke: 'rgba(0,0,0,0.15)',
+				name: 'statut chauffage',
+				data: serie_status_chauffage
+			},{
+				color: 'rgba(202,226,247,0.5)',
+				stroke: 'rgba(0,0,0,0.15)',
+				name: 'temperature',
+				data: serie_temp_reelle
+			},{
+				color: 'rgba(35,65,100,0.5)',
+				stroke: 'rgba(0,0,0,0.15)',
+				name: 'consigne',
+				data: serie_temp_voulue
+			}]
+		});
+    	graph.render();
 				
 
-			// ATTENTION, la suite necessite le css
+		// ATTENTION, la suite necessite le css
             
-			// affiche les valeurs x et y du point survolé 
-			var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-            			graph: graph
-			});
+		// affiche les valeurs x et y du point survolé 
+		var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+        	graph: graph
+		});
             
 				
-			//affiche la legende dans la div legend
-			var legend = new Rickshaw.Graph.Legend( {
-				graph: graph,
-				element: document.getElementById('legend')
-			});
+		//affiche la legende dans la div legend
+		var legend = new Rickshaw.Graph.Legend( {
+			graph: graph,
+			element: document.getElementById('legend')
+		});
 			
             
-			//permet de selectionner / deselectionner les series à afficher
-			var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
-				graph: graph,
-				legend: legend
-			});
+		//permet de selectionner / deselectionner les series à afficher
+		var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+			graph: graph,
+			legend: legend
+		});
             
-			// surligne le graph correspondant à la legende survolee
-			var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
-				graph: graph,
-				legend: legend
-			});
+		// surligne le graph correspondant à la legende survolee
+		var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
+			graph: graph,
+			legend: legend
+		});
 	    
-			// Add a basic x-axis with time values:
-			var xAxis = new Rickshaw.Graph.Axis.Time({
-				graph: graph
-			});
-			xAxis.render();
+		// Add a basic x-axis with time values:
+		var xAxis = new Rickshaw.Graph.Axis.Time({
+			graph: graph
+		});
+		xAxis.render();
 	    
-			var y_axis = new Rickshaw.Graph.Axis.Y( {
-				graph: graph,
-				orientation: 'left',
-				tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-				element: document.getElementById('y_axis'),
-			});
-			y_axis.render();
-
-		};
+		var y_axis = new Rickshaw.Graph.Axis.Y( {
+			graph: graph,
+			orientation: 'left',
+			tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+			element: document.getElementById('y_axis'),
+		});
+		y_axis.render();
 			
-
 	});
 	
 });	
