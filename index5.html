@@ -51,7 +51,8 @@ $(document).ready(function($) {
       
 	// Replace with your own values  
         var feedID        = 172663481, // Feed ID  
-        datastreamID  = "Chauffage_Buanderie",
+        pieceID  = "buanderie",
+        nom_stream = "",
         val_x = 0,
 	val_y = 0,
 	points = [],
@@ -63,7 +64,8 @@ $(document).ready(function($) {
       
         feedData.datastreams.forEach(function(datastreamData) {
 
-			if (datastreamData.id == "Temp_buanderie") {
+			nom_stream = "Temp_" + pieceID
+			if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 				
 				datastreamData.datapoints.forEach(function(datapoint) {
 					val_x = new Date(datapoint.at).getTime()/1000.0;
@@ -72,7 +74,8 @@ $(document).ready(function($) {
 				});
 			}
 			
-			if (datastreamData.id == "Temp_cible_buanderie") {
+			nom_stream = "Temp_cible_" + pieceID
+			if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 				
 				datastreamData.datapoints.forEach(function(datapoint) {
 					val_x = new Date(datapoint.at).getTime()/1000.0;
@@ -81,7 +84,8 @@ $(document).ready(function($) {
 				});
 			}
 			
-			if (datastreamData.id == "Chauffage_Buanderie") {
+			nom_stream = "chauffage_" + pieceID
+			if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 				
 				var i = 0;
 				
