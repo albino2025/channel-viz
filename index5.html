@@ -61,8 +61,6 @@ $(document).ready(function($) {
 	serie_temp_voulue = [];       // Datastream ID  
 
 	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
-      
-        alert(serie_temp_voulue.length);
         
         feedData.datastreams.forEach(function(datastreamData) {
 
@@ -103,24 +101,22 @@ $(document).ready(function($) {
 			}
         });
         
-        if (serie_status_chauffage[0].x > serie_temp_voulue[0].x) {
-        	if (serie_status_chauffage[0].y == 0) {
-			serie_status_chauffage.unshift({x : (serie_status_chauffage[0].x - 1), y: 30});
-			serie_status_chauffage.unshift({x : serie_temp_voulue[0].x, y: 30});
-		} else {
-			serie_status_chauffage.unshift({x : (serie_status_chauffage[0].x - 1), y: 0});
-			serie_status_chauffage.unshift({x : serie_temp_voulue[0].x, y: 0});
-		}
-        }
-        if (serie_status_chauffage[serie_status_chauffage.length-1].x < serie_temp_voulue[serie_temp_voulue.length-1].x) {
-        	serie_status_chauffage.push({x : serie_temp_voulue[serie_temp_voulue.length-1].x, y: serie_status_chauffage[serie_status_chauffage.length-1].y});
-        }
-        
-        alert("longueur= " + serie_status_chauffage.length);
-        
         if (serie_status_chauffage.length == 0) {
         	val_x = Date.now()/1000.0;
         	serie_status_chauffage.push({x : val_x, y : 0});
+        } else {
+        	if (serie_status_chauffage[0].x > serie_temp_reelle[0].x) {
+        		if (serie_status_chauffage[0].y == 0) {
+				serie_status_chauffage.unshift({x : (serie_status_chauffage[0].x - 1), y: 30});
+				serie_status_chauffage.unshift({x : serie_temp_reelle[0].x, y: 30});
+			} else {
+				serie_status_chauffage.unshift({x : (serie_status_chauffage[0].x - 1), y: 0});
+				serie_status_chauffage.unshift({x : serie_temp_reelle[0].x, y: 0});
+			}
+        	}
+        	if (serie_status_chauffage[serie_status_chauffage.length-1].x < serie_temp_reelle[serie_temp_reelle.length-1].x) {
+        		serie_status_chauffage.push({x : serie_temp_reelle[serie_temp_reelle.length-1].x, y: serie_status_chauffage[serie_status_chauffage.length-1].y});
+        	}
         }
         
         if (serie_temp_voulue.length == 0) {
