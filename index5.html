@@ -94,9 +94,6 @@ $(document).ready(function($) {
                   			serie_status_chauffage.push({x: val_x, y: val_y});
 					i=i+1;
 				});
-          
-				val_x = Date.now()/1000.0;
-				serie_status_chauffage.push({x : val_x, y: (serie_status_chauffage[serie_status_chauffage.length-1].y)});
 			}
         });
         
@@ -108,6 +105,9 @@ $(document).ready(function($) {
 			serie_status_chauffage.unshift({x : (serie_status_chauffage[0].x - 1), y: 0});
 			serie_status_chauffage.unshift({x : serie_temp_voulue[0].x, y: 0});
 		}
+        }
+        if (serie_status_chauffage[serie_status_chauffage.length-1].x < serie_temp_voulue[serie_temp_voulue.length-1].x) {
+        	serie_status_chauffage.push({x : serie_temp_voulue[serie_temp_voulue.length-1].x, y: serie_status_chauffage[serie_status_chauffage.length-1].y});
         }
 		
 		var graph = new Rickshaw.Graph( {
