@@ -113,6 +113,10 @@ $(document).ready(function($) {
         if (serie_status_chauffage[serie_status_chauffage.length-1].x < serie_temp_voulue[serie_temp_voulue.length-1].x) {
         	serie_status_chauffage.push({x : serie_temp_voulue[serie_temp_voulue.length-1].x, y: serie_status_chauffage[serie_status_chauffage.length-1].y});
         }
+        
+        if (serie_status_chauffage.length == 0) {
+        	serie_status_chauffage.push({x : , y : })
+        }
 		
 		var graph = new Rickshaw.Graph( {
 			element: document.querySelector("#chart"),
