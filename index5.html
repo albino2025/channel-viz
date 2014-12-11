@@ -114,7 +114,7 @@ $(document).ready(function($) {
         	serie_status_chauffage.push({x : serie_temp_voulue[serie_temp_voulue.length-1].x, y: serie_status_chauffage[serie_status_chauffage.length-1].y});
         }
         
-        $("legend").html("longueur= " + serie_status_chauffage.length;
+        alert("longueur= " + serie_status_chauffage.length);
         
         if (serie_status_chauffage.length == 0) {
         	val_x = Date.now()/1000.0;
