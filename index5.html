@@ -92,7 +92,7 @@ $(document).ready(function($) {
 	// Replace with your own values  
         var feedID        = 172663481, // Feed ID  
         pieceID  = "buanderie",
-        piece_debug = document.getElementById('offset_form').target.value;
+        piece_debug = document.getElementById('offset_form');
         nom_stream = "",
         val_x = 0,
 	val_y = 0,
@@ -101,7 +101,7 @@ $(document).ready(function($) {
 	serie_status_chauffage = [],
 	serie_temp_voulue = [];       // Datastream ID 
 	
-	$('#debug').html(piece_debug);
+	$('#debug').html(piece_debug.elements["offset"].value);
 	$('#debug2').html("debug2");
 
 	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
