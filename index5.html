@@ -81,6 +81,17 @@
 
 <script>
 
+function clearGraph() {
+  $('#y_axis').empty();
+  $('#chart').empty();
+  $('#legend').empty();
+  /*
+  $('#chart_container').html(
+    '<div id="chart"></div><div id="timeline"></div><div id="slider"></div>'
+  );
+  */
+}
+
 function mongraph (data, piece) {
 	
 	var nom_stream = "",
@@ -254,6 +265,7 @@ $(document).ready(function($) {
 	pieces_form.addEventListener('change', function(e) {
 		pieceID = e.target.value;
 		$('#debug').html(pieceID);
+		clearGraph();
 		mongraph(data, pieceID);
 	}, false);
 	
