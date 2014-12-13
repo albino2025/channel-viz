@@ -254,8 +254,7 @@ $(document).ready(function($) {
 	pieces_form.addEventListener('change', function(e) {
 		pieceID = e.target.value;
 		$('#debug').html(pieceID);
-		pieceID = data[0].id.toUpperCase();
-		$('#debug2').html(pieceID);
+		mongraph(data, pieceID);
 	}, false);
 	
 });	
