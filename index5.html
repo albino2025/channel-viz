@@ -99,12 +99,20 @@ function mongraph (data, piece) {
 	var nom_stream = "",
         val_x = 0,
 	val_y = 0,
+	piece2 = "",
 	points = [],
 	serie_temp_reelle = [],
 	serie_status_chauffage = [],
 	serie_temp_voulue = [];
 	
 	data.forEach(function(datastreamData) {
+		
+		if (piece.indexOf("rdc_") == 0) {
+			var temp = piece.split("_");
+			piece2 = temp[1];
+		} else {
+			piece2 = piece;
+		}
 
 		nom_stream = "Temp_" + piece
 		$('#debug2').html(nom_stream);
@@ -125,11 +133,7 @@ function mongraph (data, piece) {
 			});
 		}
 			
-		if (piece.indexOf("rdc_") == 0) {
-			var temp = piece.split("_");
-			piece = temp[1];
-		}
-		nom_stream = "chauffage_" + piece
+		nom_stream = "chauffage_" + piece2
 		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 			var i = 0;
 			datastreamData.datapoints.forEach(function(datapoint) {
