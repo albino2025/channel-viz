@@ -115,7 +115,7 @@ function mongraph (data, piece) {
 		}
 
 		nom_stream = "Temp_" + piece
-		$('#debug2').html(nom_stream);
+		//$('#debug2').html(nom_stream);
 		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 			datastreamData.datapoints.forEach(function(datapoint) {
 				val_x = new Date(datapoint.at).getTime()/1000.0;
@@ -263,19 +263,19 @@ $(document).ready(function($) {
         pieceID  = pieces_form.elements["piece"].value,
 	data = [];
 	
-	$('#debug').html(pieceID);
+	//$('#debug').html(pieceID);
 
 	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
 		feedData.datastreams.forEach(function(datastreamData) {
 			data.push(datastreamData);
 		});
-        	$('#debug2').html(data.length);
+        	//$('#debug2').html(data.length);
         	mongraph(data, pieceID);
 	});
 	
 	pieces_form.addEventListener('change', function(e) {
 		pieceID = e.target.value;
-		$('#debug').html(pieceID);
+		//$('#debug').html(pieceID);
 		clearGraph();
 		mongraph(data, pieceID);
 	}, false);
