@@ -107,6 +107,7 @@ function mongraph (data, piece) {
 	data.forEach(function(datastreamData) {
 
 		nom_stream = "Temp_" + piece
+		$('#debug2').html(nom_stream);
 		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 			datastreamData.datapoints.forEach(function(datapoint) {
 				val_x = new Date(datapoint.at).getTime()/1000.0;
