@@ -115,7 +115,7 @@ function mongraph (data, piece) {
 			});
 		}
 			
-		nom_stream = "Temp_cible_" + pieceID
+		nom_stream = "Temp_cible_" + piece
 		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 			datastreamData.datapoints.forEach(function(datapoint) {
 				val_x = new Date(datapoint.at).getTime()/1000.0;
@@ -124,11 +124,11 @@ function mongraph (data, piece) {
 			});
 		}
 			
-		if (pieceID.indexOf("rdc_") == 0) {
-			var temp = pieceID.split("_");
-			pieceID = temp[1];
+		if (piece.indexOf("rdc_") == 0) {
+			var temp = piece.split("_");
+			piece = temp[1];
 		}
-		nom_stream = "chauffage_" + pieceID
+		nom_stream = "chauffage_" + piece
 		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 			var i = 0;
 			datastreamData.datapoints.forEach(function(datapoint) {
