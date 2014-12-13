@@ -101,8 +101,8 @@ $(document).ready(function($) {
 	serie_status_chauffage = [],
 	serie_temp_voulue = [];       // Datastream ID 
 	
-	$('debug').html(piece_debug);
-	$("debug2").html("debug2");
+	$('#debug').html(piece_debug);
+	$('#debug2').html("debug2");
 
 	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
         
@@ -250,7 +250,7 @@ $(document).ready(function($) {
 	
 	offsetForm.addEventListener('change', function(e) {
 		var offsetMode = e.target.value;
-		$('debug').html(offsetMode);
+		$('#debug').html(offsetMode);
 	}, false);
 	
 });	
