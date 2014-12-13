@@ -81,71 +81,50 @@
 
 <script>
 
-// Make sure the document is ready to be handled  
-$(document).ready(function($) {  
-
-
-	// Set the Xively API key  
-	xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
-      
-      
-	// Replace with your own values  
-        var feedID        = 172663481, // Feed ID  
-        pieces_form = document.getElementById('pieces_form');
-        pieceID  = pieces_form.elements["piece"].value,
-        nom_stream = "",
+function mongraph (data, piece) {
+	
+	var nom_stream = "",
         val_x = 0,
 	val_y = 0,
-	data = [],
 	points = [],
 	serie_temp_reelle = [],
 	serie_status_chauffage = [],
-	serie_temp_voulue = [];       // Datastream ID 
+	serie_temp_voulue = [];
 	
-	$('#debug').html(pieceID);
+	data.forEach(function(datastreamData) {
 
-	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
-        
-        feedData.datastreams.forEach(function(datastreamData) {
-
-			nom_stream = "Temp_" + pieceID
-			data.push(datastreamData);
-			if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
-				
-				datastreamData.datapoints.forEach(function(datapoint) {
-					val_x = new Date(datapoint.at).getTime()/1000.0;
-					val_y = parseFloat(datapoint.value);
-                  			serie_temp_reelle.push({x: val_x, y: val_y});
-				});
-			}
+		nom_stream = "Temp_" + piece
+		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
+			datastreamData.datapoints.forEach(function(datapoint) {
+				val_x = new Date(datapoint.at).getTime()/1000.0;
+				val_y = parseFloat(datapoint.value);
+                		serie_temp_reelle.push({x: val_x, y: val_y});
+			});
+		}
 			
-			nom_stream = "Temp_cible_" + pieceID
-			if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
-				
-				datastreamData.datapoints.forEach(function(datapoint) {
-					val_x = new Date(datapoint.at).getTime()/1000.0;
-					val_y = parseFloat(datapoint.value);
-                  			serie_temp_voulue.push({x: val_x, y: val_y});
-				});
-			}
+		nom_stream = "Temp_cible_" + pieceID
+		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
+			datastreamData.datapoints.forEach(function(datapoint) {
+				val_x = new Date(datapoint.at).getTime()/1000.0;
+				val_y = parseFloat(datapoint.value);
+               			serie_temp_voulue.push({x: val_x, y: val_y});
+			});
+		}
 			
-			nom_stream = "chauffage_" + pieceID
-			if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
-				
-				var i = 0;
-				
-				datastreamData.datapoints.forEach(function(datapoint) {
-					val_x = new Date(datapoint.at).getTime()/1000.0;
-					val_y = parseFloat(datapoint.value)*10;
-					if (i > 0) {
-						serie_status_chauffage.push({x : (val_x-1), y: (serie_status_chauffage[serie_status_chauffage.length-1].y)});
-					}
-                  			serie_status_chauffage.push({x: val_x, y: val_y});
-					i=i+1;
-				});
-			}
+		nom_stream = "chauffage_" + pieceID
+		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
+			var i = 0;
+			datastreamData.datapoints.forEach(function(datapoint) {
+				val_x = new Date(datapoint.at).getTime()/1000.0;
+				val_y = parseFloat(datapoint.value)*10;
+				if (i > 0) {
+					serie_status_chauffage.push({x : (val_x-1), y: (serie_status_chauffage[serie_status_chauffage.length-1].y)});
+				}
+               			serie_status_chauffage.push({x: val_x, y: val_y});
+				i=i+1;
+			});
+		}
         });
-        $('#debug2').html(data.length);
         
         if (serie_status_chauffage.length == 0) {
         	val_x = Date.now()/1000.0;
@@ -175,80 +154,103 @@ $(document).ready(function($) {
         	serie_temp_reelle.push({x : val_x, y : 0});
         }
 		
-		var graph = new Rickshaw.Graph( {
-			element: document.querySelector("#chart"),
-			width: 580,
-			height: 250,
-			renderer: 'multi',
-			//renderer: 'area',
-			interpolation: 'straight',
-			unstack : true,
-			stroke: true,
-			series: [ {
-				color: 'rgba(70,130,180,0.5)',
-				stroke: 'rgba(0,0,0,0.15)',
-				name: 'statut chauffage',
-				renderer: 'area',
-				data: serie_status_chauffage
-			},{
-				color: 'rgba(0,0,51,0.8)',
-				stroke: 'rgba(0,0,0,0.15)',
-				name: 'temperature',
-				renderer: 'line',
-				data: serie_temp_reelle
-			},{
-				color: 'rgba(255,0,0,0.5)',
-				stroke: 'rgba(0,0,0,0.15)',
-				renderer: 'line',
-				name: 'consigne',
-				data: serie_temp_voulue
-			}]
-		});
+	var graph = new Rickshaw.Graph( {
+		element: document.querySelector("#chart"),
+		width: 580,
+		height: 250,
+		renderer: 'multi',
+		//renderer: 'area',
+		interpolation: 'straight',
+		unstack : true,
+		stroke: true,
+		series: [ {
+			color: 'rgba(70,130,180,0.5)',
+			stroke: 'rgba(0,0,0,0.15)',
+			name: 'statut chauffage',
+			renderer: 'area',
+			data: serie_status_chauffage
+		},{
+			color: 'rgba(0,0,51,0.8)',
+			stroke: 'rgba(0,0,0,0.15)',
+			name: 'temperature',
+			renderer: 'line',
+			data: serie_temp_reelle
+		},{
+			color: 'rgba(255,0,0,0.5)',
+			stroke: 'rgba(0,0,0,0.15)',
+			renderer: 'line',
+			name: 'consigne',
+			data: serie_temp_voulue
+		}]
+	});
     	graph.render();
 				
 
-		// ATTENTION, la suite necessite le css
+	// ATTENTION, la suite necessite le css
             
-		// affiche les valeurs x et y du point survolé 
-		var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+	// affiche les valeurs x et y du point survolé 
+	var hoverDetail = new Rickshaw.Graph.HoverDetail( {
         	graph: graph
-		});
+	});
             
 				
-		//affiche la legende dans la div legend
-		var legend = new Rickshaw.Graph.Legend( {
-			graph: graph,
-			element: document.getElementById('legend')
-		});
-			
-            
-		//permet de selectionner / deselectionner les series à afficher
-		var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
-			graph: graph,
-			legend: legend
-		});
-            
-		// surligne le graph correspondant à la legende survolee
-		var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
-			graph: graph,
-			legend: legend
-		});
-	    
-		// Add a basic x-axis with time values:
-		var xAxis = new Rickshaw.Graph.Axis.Time({
-			graph: graph
-		});
-		xAxis.render();
-	    
-		var y_axis = new Rickshaw.Graph.Axis.Y( {
-			graph: graph,
-			orientation: 'left',
-			tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-			element: document.getElementById('y_axis'),
-		});
-		y_axis.render();
-			
+	//affiche la legende dans la div legend
+	var legend = new Rickshaw.Graph.Legend( {
+		graph: graph,
+		element: document.getElementById('legend')
 	});
+			
+            
+	//permet de selectionner / deselectionner les series à afficher
+	var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+		graph: graph,
+		legend: legend
+	});
+            
+	// surligne le graph correspondant à la legende survolee
+	var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
+		graph: graph,
+		legend: legend
+	});
+	    
+	// Add a basic x-axis with time values:
+	var xAxis = new Rickshaw.Graph.Axis.Time({
+		graph: graph
+	});
+	xAxis.render();
+	    
+	var y_axis = new Rickshaw.Graph.Axis.Y( {
+		graph: graph,
+		orientation: 'left',
+		tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+		element: document.getElementById('y_axis'),
+	});
+	y_axis.render();
+			
+};
+
+// Make sure the document is ready to be handled  
+$(document).ready(function($) {  
+
+	// Set the Xively API key  
+	xively.setKey( "Gr5aw0GOFcyEm4IsoAN0VDLJFeHYn9CBd8XOFtE6jxkOD5pC" );
+
+	// Replace with your own values  
+        var feedID        = 172663481, // Feed ID  
+        pieces_form = document.getElementById('pieces_form');
+        pieceID  = pieces_form.elements["piece"].value,
+	data = [];
+	
+	$('#debug').html(pieceID);
+
+	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
+		feedData.datastreams.forEach(function(datastreamData) {
+			data.push(datastreamData);
+		});
+        	$('#debug2').html(data.length);
+	});
+	
+	mongraph(data, pieceID);
 	
 	pieces_form.addEventListener('change', function(e) {
 		pieceID = e.target.value;
