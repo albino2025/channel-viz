@@ -122,6 +122,10 @@ function mongraph (data, piece) {
 			});
 		}
 			
+		if (pieceID.indexOf("rdc_") == 0) {
+			var temp = pieceID.split("_");
+			pieceID = temp[1];
+		}
 		nom_stream = "chauffage_" + pieceID
 		if (datastreamData.id.toUpperCase() == nom_stream.toUpperCase()) {
 			var i = 0;
