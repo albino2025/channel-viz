@@ -248,9 +248,8 @@ $(document).ready(function($) {
 			data.push(datastreamData);
 		});
         	$('#debug2').html(data.length);
+        	mongraph(data, pieceID);
 	});
-	
-	mongraph(data, pieceID);
 	
 	pieces_form.addEventListener('change', function(e) {
 		pieceID = e.target.value;
