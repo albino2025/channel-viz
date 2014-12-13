@@ -76,7 +76,7 @@
                 <label for="piece5">Exterieur</label><br>
         </form>
 </div>
-
+<div id="debug"></div>
 
 <script>
 
@@ -91,13 +91,16 @@ $(document).ready(function($) {
 	// Replace with your own values  
         var feedID        = 172663481, // Feed ID  
         pieceID  = "buanderie",
+        piece_debug = document.getElementById('offset_form');
         nom_stream = "",
         val_x = 0,
 	val_y = 0,
 	points = [],
 	serie_temp_reelle = [],
 	serie_status_chauffage = [],
-	serie_temp_voulue = [];       // Datastream ID  
+	serie_temp_voulue = [];       // Datastream ID 
+	
+	$('debug').html(piece_debug);
 
 	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
         
@@ -242,6 +245,11 @@ $(document).ready(function($) {
 		y_axis.render();
 			
 	});
+	
+	offsetForm.addEventListener('change', function(e) {
+		var offsetMode = e.target.value;
+		$('debug').html(offsetMode);
+	}, false);
 	
 });	
 </script>
