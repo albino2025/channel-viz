@@ -266,7 +266,7 @@ $(document).ready(function($) {
 	
 	//$('#debug').html(pieceID);
 
-	xively.feed.history(feedID, {duration: '6hours', limit: 1000}, function(feedData) {
+	xively.feed.history(feedID, {duration: '6hours', interval: 30, limit: 1000}, function(feedData) {
 		feedData.datastreams.forEach(function(datastreamData) {
 			data.push(datastreamData);
 		});
